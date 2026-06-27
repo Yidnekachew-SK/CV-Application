@@ -1,3 +1,8 @@
 * {
 	border: 1px solid red;
 }
+
+.generalInfo, .educationInfo,
+.experienceInfo {
+	border-bottom: 2px solid;
+}

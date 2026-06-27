@@ -1,13 +1,29 @@
 import Button from './button.jsx';
 import '../Styles/form-styles.css';
 
-function HandleInfoSubmit () {
+function GeneralForm ({setFormData, setFormId}) {
+	const HandleGeneralInfoSubmit = (event) => {
+		event.preventDefault();
 
-}
+		if (event.currentTarget.checkValidity()) {
+			const formData = new FormData(event.currentTarget);
 
-function GeneralForm () {
+			let firstName = formData.get('fName');
+			let lastName = formData.get('lName');
+			let email = formData.get('email');
+			let phone = formData.get('phone');
+			let submittedData = {firstName, lastName, email, phone};
+			console.log('submittedData.............................')
+			console.log(submittedData)
+
+			setFormData(prev => ({ ...prev, general: submittedData }));
+			setFormId(0);
+			event.currentTarget.reset();
+		}
+	};
+
 	return (
-		<form className="form generalForm">
+		<form className="form generalForm" onSubmit={HandleGeneralInfoSubmit}>
 			<p className="formLabel">General Information Form</p>
 			<div className="input firstNameInput">
 				<label htmlFor="firstName">First Name</label>
@@ -27,8 +43,8 @@ function GeneralForm () {
 			</div>
 
 			<div className="buttons">
-				<Button name="Edit" className='button' onClick={HandleInfoSubmit} />
-				<Button name="Submit" className='button' onClick={HandleInfoSubmit} />
+				<Button name="Edit" className='button' />
+				<Button type="submit" name="Submit" className='button' />
 			</div>
 			
 		</form>

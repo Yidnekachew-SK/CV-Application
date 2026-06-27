@@ -1,13 +1,15 @@
+import '../Styles/cv-display.css';
 
-function noInfo () {
+function NoInformation () {
 	return (
-		<div classNameName="noInfoContainer">
-			<p classNameName="noInfo">No information</p>
+		<div className="noInfoContainer">
+			<p className="noInfo">No information</p>
 		</div>
 	)
 }
 
-function GeneralInfoDisplay ({firstName, lastName, email, phone}) {
+function GeneralInfoDisplay ({data}) {
+	let {firstName, lastName, email, phone} = data;
 	let fullName = firstName + ' ' + lastName;
 	return (
 		<div className="generalInfo">
@@ -18,19 +20,21 @@ function GeneralInfoDisplay ({firstName, lastName, email, phone}) {
 	)
 }
 
-function EduactionInfoDisplay ({school, title, dateFrom, dateTo}) {
-	let date = dateFrom + ' - ' + dateTo;
+function EducationInfoDisplay ({data}) {
+	let {schoolName, studyTitle, dateFrom, dateUpTo} = data;
+	let date = dateFrom + ' - ' + dateUpTo;
 	return (
 		<div className="educationInfo">
-			<p className="schoolName">{school}</p>
-			<p className="studyTitle">{title}</p>
+			<p className="schoolName">{schoolName}</p>
+			<p className="studyTitle">{studyTitle}</p>
 			<p className="date">{date}</p>
 		</div>
 	)
 }
 
-function ExperienceInfoDisplay ({company, position, dateFrom, dateTo}) {
-	let date = dateFrom + ' - ' + dateTo;
+function ExperienceInfoDisplay ({data}) {
+	let {CompanyName, position, responsibility, dateFrom, dateUpTo} = data;
+	let date = dateFrom + ' - ' + dateUpTo;
 	return (
 		<div className="experienceInfo">
 			<p className="company">{company}</p>
@@ -40,8 +44,24 @@ function ExperienceInfoDisplay ({company, position, dateFrom, dateTo}) {
 	)
 }
 
-function CVDisplay () {
-	return (
-
-	)
+function CVDisplay ({id, data}) {
+	if (id === 0) {
+		return (
+			<GeneralInfoDisplay data={data.general} />
+		)
+	} else if (id === 1) {
+		return (
+			<EducationInfoDisplay data={data.education} />
+		)	
+	} else if (id === 2) {
+		return (
+			<ExperienceInfoDisplay data={data.experience} />
+		)
+	} else {
+		return (
+			<NoInformation />
+		)
+	}
 }
+
+export default CVDisplay

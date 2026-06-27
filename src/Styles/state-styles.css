@@ -1,0 +1,16 @@
+* {
+	border: 1px solid red;
+}
+
+.entirePage {
+	display: grid;
+	grid-template-columns: 0.5fr 1fr;
+}
+
+.formContainer {
+
+}
+
+.displayContainer {
+	
+}

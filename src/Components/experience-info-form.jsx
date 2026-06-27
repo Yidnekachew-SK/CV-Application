@@ -5,9 +5,28 @@ function HandleSubmit () {
 
 }
 
-function ExperienceForm () {
+function ExperienceForm ({setFormData, setFormId}) {
+	const HandleExperienceInfoSubmit = (event) => {
+		event.preventDefault();
+
+		if (event.currentTarget.checkValidity()) {
+			const formData = new FormData(event.currentTarget);
+
+			let CompanyName = formData.get('company');
+			let position = formData.get('positionTitle');
+			let responsibility = formData.get('job');
+			let dateFrom = formData.get('dateFrom');
+			let dateUpTo = formData.get('dateTo')
+			let submittedData = {CompanyName, position, responsibility, dateFrom, dateUpTo}
+
+			setFormData(prev => ({ ...prev, experience: submittedData }));
+			setFormId(2);
+			event.currentTarget.reset();
+		}
+	}
+
 	return (
-		<form className="form experienceForm">
+		<form className="form experienceForm" onSubmit={HandleExperienceInfoSubmit} >
 			<p className="formLabel">Practical Experience Form</p>
 			<div className="input">
 				<label htmlFor="companyName">Company Name</label>
@@ -31,8 +50,8 @@ function ExperienceForm () {
 			</div>
 
 			<div className="buttons">
-				<Button name="Edit" className='button' onClick={HandleSubmit} />
-				<Button name="Submit" className='button' onClick={HandleSubmit} />
+				<Button name="Edit" className='button' />
+				<Button name="Submit" className='button' />
 			</div>
 			
 		</form>
