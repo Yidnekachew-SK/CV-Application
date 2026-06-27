@@ -3,6 +3,12 @@
 }
 
 .generalInfo, .educationInfo,
-.experienceInfo {
+.experienceInfo, .noInfoContainer {
 	border-bottom: 2px solid;
+	height: 200px;
 }
+
+.noInfo {
+	text-align: center;
+}
+

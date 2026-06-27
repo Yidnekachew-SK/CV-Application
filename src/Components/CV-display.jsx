@@ -45,23 +45,21 @@ function ExperienceInfoDisplay ({data}) {
 }
 
 function CVDisplay ({id, data}) {
-	if (id === 0) {
-		return (
-			<GeneralInfoDisplay data={data.general} />
-		)
-	} else if (id === 1) {
-		return (
-			<EducationInfoDisplay data={data.education} />
-		)	
-	} else if (id === 2) {
-		return (
-			<ExperienceInfoDisplay data={data.experience} />
-		)
-	} else {
-		return (
-			<NoInformation />
-		)
-	}
+	return (
+		<div className="dataDisplayer">
+			{data.general 
+        		? <GeneralInfoDisplay data={data.general} /> 
+        		: <NoInformation/>}
+
+         	{data.education 
+        		? <EducationInfoDisplay data={data.education} /> 
+        		: <NoInformation/>}
+      
+      		{data.experience 
+        		? <ExperienceInfoDisplay data={data.experience} /> 
+        		: <NoInformation />}
+        </div>
+	)
 }
 
 export default CVDisplay
