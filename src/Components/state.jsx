@@ -6,8 +6,8 @@ import EducationForm from './educational-info-form.jsx';
 import ExperienceForm from './experience-info-form.jsx';
 
 function State () {
-	const [formData, setFormData] = useState({});
-	const [formId, setFormId] = useState(5);
+	const [formData, setFormData] = useState({general: null, education: [], experience: []});
+	const [formId, setFormId] = useState({gen: -1, edu: -1, exp: -1});
 
 	return (
 		<div className="entirePage">

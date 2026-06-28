@@ -1,7 +1,8 @@
 import '../Styles/form-styles.css';
-import Button from './button.jsx';
+import { Button, IncreaseId } from './button.jsx';
 
 function EducationForm ({setFormData, setFormId}) {
+	let id = -1;
 	const HandleEducationInfoSubmit = (event) => {
 		event.preventDefault();
 
@@ -14,8 +15,9 @@ function EducationForm ({setFormData, setFormId}) {
 			let dateUpTo = formData.get('dateTo');
 			let submittedData = {schoolName, studyTitle, dateFrom, dateUpTo};
 
-			setFormData(prev => ({ ...prev, education: submittedData }));
-			setFormId(1);
+			setFormData(prev => ({ ...prev, education: [...prev.education, submittedData] }));
+			setFormId((prev => ({...prev, edu: IncreaseId(prev.edu)})));
+			console.log(id)
 			event.currentTarget.reset();
 		}
 	}

@@ -10,4 +10,8 @@ function Button({ type = "button", name, className, onClick=null }) {
   );
 }
 
-export default Button;
+function IncreaseId (id) {
+  return id + 1;
+}
+
+export { Button, IncreaseId };

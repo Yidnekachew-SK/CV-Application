@@ -5,7 +5,6 @@
 .generalInfo, .educationInfo,
 .experienceInfo, .noInfoContainer {
 	border-bottom: 2px solid;
-	height: 200px;
 }
 
 .noInfo {

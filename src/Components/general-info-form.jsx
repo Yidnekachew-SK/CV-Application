@@ -1,4 +1,4 @@
-import Button from './button.jsx';
+import { Button } from './button.jsx';
 import '../Styles/form-styles.css';
 
 function GeneralForm ({setFormData, setFormId}) {
@@ -17,7 +17,7 @@ function GeneralForm ({setFormData, setFormId}) {
 			console.log(submittedData)
 
 			setFormData(prev => ({ ...prev, general: submittedData }));
-			setFormId(0);
+			setFormId(prev => ({...prev, gen: 0}));
 			event.currentTarget.reset();
 		}
 	};
