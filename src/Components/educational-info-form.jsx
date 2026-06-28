@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../Styles/form-styles.css';
 import { Button, selectEditSection } from './button.jsx';
 
-function EducationForm ({formData, setFormData, formId, setFormId}) {
+function EducationForm ({formData, setFormData, formId, setFormId, isEdited, setIsEdited}) {
 	const [localEduData, setLocalEduData] = useState({ schoolName: "", studyTitle: "",  
 		dateFrom: "", dateTo: "" });
 	const [showSelect, setShowSelect] = useState(false);
@@ -19,14 +19,24 @@ function EducationForm ({formData, setFormData, formId, setFormId}) {
 			let dateTo = submitData.get('dateTo');
 			let submittedData = {schoolName, studyTitle, dateFrom, dateTo};
 
-			setFormData(prev => ({ ...prev, education: [...prev.education, submittedData] }));
+			if (isEdited) {
+				let id = formId.edu;
+				setFormData(prev => ({ ...prev, education: prev.education.map((item, index) =>
+      						index === id ? submittedData : item
+    				)}));
+				setIsEdited(false);
+			} else {
+				setFormData(prev => ({ ...prev, education: [...prev.education, submittedData] }));
+			}
+			
 			setLocalEduData({ schoolName: "", studyTitle: "", dateFrom: "", dateTo: "" });
 			event.currentTarget.reset();
 		}
 	}
 
 	const HandleEducationInfoEdit = () => {
-		setShowSelect(true)
+		setShowSelect(true);
+		setIsEdited(true);
 	};
 
 	const HandleChange = (e) => {
@@ -68,7 +78,7 @@ function EducationForm ({formData, setFormData, formId, setFormId}) {
 
 		{showSelect && (
 		  <div className="selectSectionOverlay">
-		    {selectEditSection(formData, "edu", setFormId, setShowSelect, setLocalEduData)}
+		    {selectEditSection(formData, "edu", setFormId, setShowSelect, setLocalEduData, setIsEdited)}
 		  </div>
 		)}
 

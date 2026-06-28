@@ -11,7 +11,7 @@ function Button({ type = "button", name, className, onClick=null }) {
 };
 
 
-function selectEditSection(data, type, setId, setShowSelect, setData) {
+function selectEditSection(data, type, setId, setShowSelect, setData, setIsEdited) {
   return (
     <div className="selectSection">
       {type === "edu" ? 

@@ -8,13 +8,17 @@ import ExperienceForm from './experience-info-form.jsx';
 function State () {
 	const [formData, setFormData] = useState({general: null, education: [], experience: []});
 	const [formId, setFormId] = useState({gen: -1, edu: -1, exp: -1});
+	const [isEdited, setIsEdited] = useState(false);
 
 	return (
 		<div className="entirePage">
 			<div className="formContainer">
-				<GeneralForm formData={formData} setFormData={setFormData} formId={formId} setFormId={setFormId} />
-				<EducationForm formData={formData} setFormData={setFormData} formId={formId} setFormId={setFormId} />
-				<ExperienceForm formData={formData} setFormData={setFormData} formId={formId} setFormId={setFormId} />
+				<GeneralForm formData={formData} setFormData={setFormData} formId={formId} 
+					setFormId={setFormId} />
+				<EducationForm formData={formData} setFormData={setFormData} formId={formId} 
+					setFormId={setFormId} isEdited={isEdited} setIsEdited={setIsEdited} />
+				<ExperienceForm formData={formData} setFormData={setFormData} formId={formId} 
+					setFormId={setFormId} isEdited={isEdited} setIsEdited={setIsEdited} />
 			</div>
 			<div className="displayContainer">
 				<CVDisplay id={formId} data={formData} />

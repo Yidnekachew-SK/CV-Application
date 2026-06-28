@@ -13,7 +13,7 @@ function GeneralInfoDisplay ({data}) {
 	let fullName = firstName + ' ' + lastName;
 	return (
 		<div>
-			<p className="fullName">{fullName}</p>
+			<p className="fullName">{`I am ${fullName}`}</p>
 			<p className="email">{email}</p>
 			<p className="phone">{phone}</p>
 		</div>
@@ -51,10 +51,7 @@ function CVDisplay ({id, data}) {
 		<div className="dataDisplayer">
 			<div className="generalInfo">
 				{data.general ? (
-					<>
-						<h2> General Information </h2>
-						<GeneralInfoDisplay data={data.general} /> 
-					</>
+					<GeneralInfoDisplay data={data.general} /> 
         		)	: <NoInformation/>
         		}
 			</div>

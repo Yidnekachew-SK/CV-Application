@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, selectEditSection } from './button.jsx'
 import '../Styles/form-styles.css';
 
-function ExperienceForm ({formData, setFormData, formId, setFormId}) {
+function ExperienceForm ({formData, setFormData, formId, setFormId, isEdited, setIsEdited}) {
 	const [localExpData, setLocalExpData] = useState({ company: "", position: "", job: "",  
 		dateFrom: "", dateTo: "" });
 	const [showSelect, setShowSelect] = useState(false);
@@ -20,14 +20,24 @@ function ExperienceForm ({formData, setFormData, formId, setFormId}) {
 			let dateTo = formData.get('dateTo')
 			let submittedData = {company, position, job, dateFrom, dateTo};
 
-			setFormData(prev => ({ ...prev, experience: [...prev.experience, submittedData] }));
+			if (isEdited) {
+				let id = formId.exp;
+				setFormData(prev => ({ ...prev, experience: prev.experience.map((item, index) =>
+      						index === id ? submittedData : item
+    				)}));
+				setIsEdited(false);
+			} else {
+				setFormData(prev => ({ ...prev, experience: [...prev.experience, submittedData] }));
+			}
+			
 			setLocalExpData({ company: "", position: "", job: "", dateFrom: "", dateTo: "" });
 			event.currentTarget.reset();
 		}
 	}
 
 	const HandleExperienceInfoEdit = () => {
-		setShowSelect(true)
+		setShowSelect(true);
+		setIsEdited(true);
 	};
 
 	const HandleChange = (e) => {
@@ -71,7 +81,7 @@ function ExperienceForm ({formData, setFormData, formId, setFormId}) {
 
 			{showSelect && (
 			  <div className="selectSectionOverlay">
-			    {selectEditSection(formData, "exp", setFormId, setShowSelect, setLocalExpData)}
+			    {selectEditSection(formData, "exp", setFormId, setShowSelect, setLocalExpData, setIsEdited)}
 			  </div>
 			)}
 			
