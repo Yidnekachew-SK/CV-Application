@@ -12,9 +12,9 @@ function State () {
 	return (
 		<div className="entirePage">
 			<div className="formContainer">
-				<GeneralForm setFormData={setFormData} setFormId={setFormId} />
-				<EducationForm setFormData={setFormData} setFormId={setFormId} />
-				<ExperienceForm setFormData={setFormData} setFormId={setFormId} />
+				<GeneralForm formData={formData} setFormData={setFormData} formId={formId} setFormId={setFormId} />
+				<EducationForm formData={formData} setFormData={setFormData} formId={formId} setFormId={setFormId} />
+				<ExperienceForm formData={formData} setFormData={setFormData} formId={formId} setFormId={setFormId} />
 			</div>
 			<div className="displayContainer">
 				<CVDisplay id={formId} data={formData} />

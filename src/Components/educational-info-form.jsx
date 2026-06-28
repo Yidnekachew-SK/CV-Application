@@ -1,53 +1,78 @@
+import { useState } from 'react';
 import '../Styles/form-styles.css';
-import { Button, IncreaseId } from './button.jsx';
+import { Button, selectEditSection } from './button.jsx';
 
-function EducationForm ({setFormData, setFormId}) {
-	let id = -1;
+function EducationForm ({formData, setFormData, formId, setFormId}) {
+	const [localEduData, setLocalEduData] = useState({ schoolName: "", studyTitle: "",  
+		dateFrom: "", dateTo: "" });
+	const [showSelect, setShowSelect] = useState(false);
+
 	const HandleEducationInfoSubmit = (event) => {
 		event.preventDefault();
 
 		if (event.currentTarget.checkValidity()) {
-			const formData = new FormData(event.currentTarget);
+			const submitData = new FormData(event.currentTarget);
 
-			let schoolName = formData.get('school');
-			let studyTitle = formData.get('studyTitle');
-			let dateFrom = formData.get('dateFrom');
-			let dateUpTo = formData.get('dateTo');
-			let submittedData = {schoolName, studyTitle, dateFrom, dateUpTo};
+			let schoolName = submitData.get('schoolName');
+			let studyTitle = submitData.get('studyTitle');
+			let dateFrom = submitData.get('dateFrom');
+			let dateTo = submitData.get('dateTo');
+			let submittedData = {schoolName, studyTitle, dateFrom, dateTo};
 
 			setFormData(prev => ({ ...prev, education: [...prev.education, submittedData] }));
-			setFormId((prev => ({...prev, edu: IncreaseId(prev.edu)})));
-			console.log(id)
+			setLocalEduData({ schoolName: "", studyTitle: "", dateFrom: "", dateTo: "" });
 			event.currentTarget.reset();
 		}
 	}
 
+	const HandleEducationInfoEdit = () => {
+		setShowSelect(true)
+	};
+
+	const HandleChange = (e) => {
+	    const { name, value } = e.target;
+	    setLocalEduData((prev) => ({ ...prev, [name]: value }));
+	};
+
 	return (
+		<>
 		<form className="form educationalForm" onSubmit={HandleEducationInfoSubmit} >
 			<p className="formLabel">Educational Experience Form</p>
 			<div className="input">
-				<label htmlFor="schoolName">School Name</label>
-				<input type="text" name="school" id="schoolName" required></input>
+				<label htmlFor="school">School Name</label>
+				<input type="text" name="schoolName" id="school" required value={localEduData.schoolName}
+					onChange={HandleChange} ></input>
 			</div>
 			<div className="input">
 				<label htmlFor="lastName">Title of Study</label>
-				<input type="text" name="studyTitle" id="title" required></input>
+				<input type="text" name="studyTitle" id="title" required value={localEduData.studyTitle}
+					onChange={HandleChange} ></input>
 			</div>
 			<div className="input">
 				<label htmlFor="from">From</label>
-				<input type="date" name="dateFrom" id="from" required></input>
+				<input type="date" name="dateFrom" id="from" required value={localEduData.dateFrom}
+					onChange={HandleChange} ></input>
 			</div>
 			<div className="input">
 				<label htmlFor="to">TO</label> <br></br>
-				<input type="date" name="dateTo" id="to" required></input>
+				<input type="date" name="dateTo" id="to" required value={localEduData.dateTo}
+					onChange={HandleChange} ></input>
 			</div>
 
 			<div className="buttons">
-				<Button name="Edit" className='button' />
+				<Button name="Edit" className='button' onClick={HandleEducationInfoEdit} />
 				<Button type="submit" name="Submit" className='button' />
 			</div>
 			
 		</form>
+
+		{showSelect && (
+		  <div className="selectSectionOverlay">
+		    {selectEditSection(formData, "edu", setFormId, setShowSelect, setLocalEduData)}
+		  </div>
+		)}
+
+		</>
 	)
 }
 
