@@ -1,17 +1,25 @@
-* {
-	border: 1px solid red;
+.formContainer {
+	border-right: 2px solid;
+	padding: 5px;
 }
 
 .form {
-	
+	padding: 5px;
+	border: 2px solid black;
+	border-radius: 6px;	
+	margin-bottom: 3px;
+	background-color: #a6bfc9;
 }
 
 .formLabel {
 	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	margin: 6px 0;
 }
 
 .input {
-	margin: 5px;
+	margin: 3px;
 }
 
 label {
@@ -20,10 +28,12 @@ label {
 }
 
 input {
-	width: 90%;
+	width: 95%;
+	height: 18px;
 	border: 1px solid;
 	border-radius: 5px;
 	margin: 5px 0;
+	background-color: #f0f0f0;
 }
 
 .buttons {
@@ -38,9 +48,11 @@ input {
 	border-radius: 5px;
 	padding: 5px 10px;
 	margin: 5px 10px;
+	box-shadow: 2px 2px 2px gray;
+	background-color: #335f71;
+	color: whitesmoke;
 }
 
-/* styles.css */
 .selectSectionOverlay {
   position: fixed;       /* sit on top of everything */
   top: 0;
@@ -61,4 +73,18 @@ input {
   border-radius: 8px;
   max-height: 80%;
   overflow-y: auto;
+}
+
+.editSection {
+	border: 2px solid #003a00;
+	padding: 5px 10px;
+	margin-bottom: 5px;
+	background-color: #afd8c6;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 5px 30px;
+}
+
+.editSection p {
+	margin: 2px 0;
 }

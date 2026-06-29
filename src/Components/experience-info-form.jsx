@@ -59,7 +59,7 @@ function ExperienceForm ({formData, setFormData, formId, setFormId, isEdited, se
 					onChange={HandleChange} ></input>
 			</div>
 			<div className="input">
-				<label htmlFor="responsibility">Main responsibilities</label>
+				<label htmlFor="responsibility">Responsibility</label>
 				<input type="textbox" name="job" id="responsibility" required value={localExpData.job}
 					onChange={HandleChange} ></input>
 			</div>
@@ -69,7 +69,7 @@ function ExperienceForm ({formData, setFormData, formId, setFormId, isEdited, se
 					onChange={HandleChange} ></input>
 			</div>
 			<div className="input phoneInput">
-				<label htmlFor="to">TO</label>
+				<label htmlFor="to">TO</label><br></br>
 				<input type="date" name="dateTo" id="to" required value={localExpData.dateTo}
 					onChange={HandleChange} ></input>
 			</div>

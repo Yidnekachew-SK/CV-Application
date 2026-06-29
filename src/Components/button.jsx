@@ -14,24 +14,32 @@ function Button({ type = "button", name, className, onClick=null }) {
 function selectEditSection(data, type, setId, setShowSelect, setData, setIsEdited) {
   return (
     <div className="selectSection">
+      <h2>Click the entry you want to edit</h2>
       {type === "edu" ? 
           data.education.map((d, index) => (
-            <li key={`edu-${index}`} onClick={() => {
+            <div className="editSection eduSection" key={`edu-${index}`} onClick={() => {
                 setId(prev => ({ ...prev, edu: index }));
                 setShowSelect(false);
                 setData(data.education[index]);
               }} >
-              {d.schoolName}
-            </li>
+              <p>{`school: ${d.schoolName}`}</p>
+              <p>{`Study Title: ${d.studyTitle}`}</p>
+              <p>{`Date From: ${d.dateFrom}`}</p>
+              <p>{`Date To: ${d.dateTo}`}</p>
+            </div>
           ))
         : data.experience.map((d, index) => (
-            <li key={`exp-${index}`} onClick={() => {
+            <div className="editSection expSection" key={`exp-${index}`} onClick={() => {
                 setId(prev => ({ ...prev, exp: index }));
                 setShowSelect(false);
                 setData(data.experience[index]);
               }} >
-              {d.company}
-            </li>
+              <p>{`Company: ${d.company}`}</p>
+              <p>{`Position: ${d.psoition}`}</p>
+              <p>{`Responsibility: ${d.job}`}</p>
+              <p>{`Date From: ${d.dateFrom}`}</p>
+              <p>{`Date To: ${d.dateTo}`}</p>
+            </div>
           ))}
     </div>
   );

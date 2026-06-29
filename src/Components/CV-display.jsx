@@ -24,9 +24,11 @@ function EducationInfoDisplay ({data}) {
 	let {schoolName, studyTitle, dateFrom, dateTo} = data;
 	let date = dateFrom + ' - ' + dateTo;
 	return (
-		<div>
-			<p className="schoolName">{schoolName}</p>
-			<p className="studyTitle">{studyTitle}</p>
+		<div className="eduEntryContainer">
+			<div className="institutionInfo">
+				<p className="schoolName">{`${schoolName}`}</p>
+				<p className="studyTitle">{studyTitle}</p>
+			</div>
 			<p className="date">{date}</p>
 		</div>
 	)
@@ -34,13 +36,14 @@ function EducationInfoDisplay ({data}) {
 
 function ExperienceInfoDisplay ({data}) {
 	let {company, position, job, dateFrom, dateTo} = data;
-	//console.log({company, position, responsibility, dateFrom, dateUpTo})
 	let date = dateFrom + ' - ' + dateTo;
 	return (
-		<div>
-			<p className="company">{company}</p>
-			<p className="position">{position}</p>
-			<p className="dateWorked">{job}</p>
+		<div className="expEntryContainer">
+			<div className="">
+				<p className="company">{`At: ${company}`}</p>
+				<p className="position">{`${position}`}</p>
+				<p className="job">{job}</p>
+			</div>
 			<p className="dateWorked">{date}</p>
 		</div>
 	)
